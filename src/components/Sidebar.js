@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../assets/Logo.svg";
 import InputBox from "./InputBox";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 const Sidebar = () => {
+  const { user, loginWithRedirect , isAuthenticated, logout} = useAuth0();
+
   return (
     <Container>
       <LogoWrapper>
@@ -18,7 +22,15 @@ const Sidebar = () => {
         <InputBox type="email" placeholder="Email" />
         <InputBox type="password" placeholder="Password" />
         <InputBox type="password" placeholder="Confrim Password" />
-        <button>Sign Up</button>
+        {
+          isAuthenticated ? <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</button>
+          : 
+          <button onClick={() => loginWithRedirect()}>Log In</button>
+
+        }
+        {
+          isAuthenticated && <p>{ user.name }</p>
+        }
       </Form>
       <div>
         <Terms>
