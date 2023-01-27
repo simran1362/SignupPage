@@ -13,7 +13,7 @@ const Sidebar = () => {
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-          Eli <span>Codes</span>
+          Sim <span>Codes</span>
         </h3>
       </LogoWrapper>
       <Form>
